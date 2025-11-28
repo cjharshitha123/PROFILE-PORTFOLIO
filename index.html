@@ -1,0 +1,261 @@
+<!-- Corrected and cleaned-up version of your Portfolio HTML code -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>C J Harshitha's Profile</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #f6f9fc;
+            color: #222;
+        }
+
+        header {
+            position: relative;
+            background: linear-gradient(135deg, #4b7bec, #20bf6b);
+            color: black;
+            padding: 40px 40px 80px 40px;
+            text-align: left;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        nav {
+            background: #222;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 25px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            margin: 40px auto;
+            width: 85%;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        #skills div, #projects div {
+            background: #eef2ff;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #4b7bec;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #bbb;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4b7bec;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #3867d6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #222;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .social-buttons {
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 18px;
+            background: #4b7bec;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-right: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            opacity: 0.85;
+        }
+
+        .social-btn img {
+            width: 22px;
+            margin-right: 7px;
+        }
+
+        .linkedin-btn { background: #0077b5; }
+        .github-btn { background: #24292e; }
+        .cv-btn { background: #20bf6b; }
+    </style>
+</head>
+
+<body onload="loadXMLDoc()">
+
+<header>
+    <div class="header-content">
+        <div>
+            <h1>My Profile</h1>
+            <p class="tagline">Web Developer | Designer | Programmer</p>
+        </div>
+
+        <img src="me.jpg" alt="Profile Photo" class="profile-pic">
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>I am a passionate developer who loves building websites with HTML, CSS, JS, PHP, MySQL.</p>
+
+    <div class="social-buttons">
+        <a href="My Resume.pdf" download class="social-btn cv-btn">📄 Download CV</a>
+
+        <a href="https://www.linkedin.com/in/YourLinkedInProfile" target="_blank" class="social-btn linkedin-btn">
+            <img src="linkedin.png"> LinkedIn
+        </a>
+
+        <a href="https://github.com/YourGitHubUser" target="_blank" class="social-btn github-btn">
+            <img src="github.png"> GitHub
+        </a>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Skills</h2>
+    <div id="skill-output">Artificial intelligence and machine learning | Cloud computing and DevOps | Data structures and algorithms</div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div id="project-output">Smart Campus Surveillance and Guidance System | Blockchain-Based Fake Review Detection | AI-Powered Disease Detection System</div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+
+    <form id="contactForm" onsubmit="return validateForm()">
+        <label>Name:</label>
+        <input type="text" id="name" required>
+
+        <label>Email:</label>
+        <input type="email" id="email" required>
+
+        <label>USN:</label>
+        <input type="text" id="usn" required>
+
+        <label>Address:</label>
+        <textarea id="address"></textarea>
+
+        <label>Phone no:</label>
+        <input type="text" id="phone" required>
+
+        <button type="submit">Send</button>
+    </form>
+
+    <div id="form-status" style="margin-top:10px; font-weight:bold;"></div>
+</section>
+
+<footer>
+    <p>© 2025 My Portfolio Website</p>
+</footer>
+
+<script>
+    document.addEventListener("mousemove", function(e) {
+        document.title = `Cursor: ${e.clientX}, ${e.clientY}`;
+    });
+
+    function validateUSN(usn) {
+        return /^[1-4][A-Z]{2}\d{2}[A-Z]{2}\d{3}$/.test(usn);
+    }
+
+    function validateForm() {
+        let usn = document.getElementById("usn").value;
+        if (!validateUSN(usn)) {
+            document.getElementById("form-status").innerText = "Invalid USN Format!";
+            return false;
+        }
+        document.getElementById("form-status").innerText = "Form submitted successfully!";
+        return false;
+    }
+
+    function loadXMLDoc() {
+        loadSection("skills.xml", "skills.xsl", "skill-output");
+        loadSection("projects.xml", "projects.xsl", "project-output");
+    }
+
+    function loadSection(xmlFile, xslFile, outputID) {
+        let xhrXML = new XMLHttpRequest();
+        xhrXML.open("GET", xmlFile);
+        xhrXML.onload = function () {
+            let xml = xhrXML.responseXML;
+
+            let xhrXSL = new XMLHttpRequest();
+            xhrXSL.open("GET", xslFile);
+            xhrXSL.onload = function () {
+                let xsl = xhrXSL.responseXML;
+                let processor = new XSLTProcessor();
+                processor.importStylesheet(xsl);
+                let result = processor.transformToFragment(xml, document);
+                document.getElementById(outputID).innerHTML = "";
+                document.getElementById(outputID).appendChild(result);
+            }
+            xhrXSL.send();
+        }
+        xhrXML.send();
+    }
+</script>
+
+</body>
+</html>
